@@ -1,0 +1,8 @@
+npm i --save express express-validator mongoose
+
+node src/index.server.js
+"start": "nodemon ./src/index.server.js"
+
+
+
+tên collection đây  :  module.exports = mongoose.model("User55", userSchema);
