@@ -41,7 +41,11 @@ const userSchema = new mongoose.Schema(
 );
 
 userSchema.virtual("password").set(function (password) {
-  this.hashPassword = bcrypt.hash(password, 10, (err, hash) => {});
+  this.hashPassword = bcrypt.hashSync(password, 10);
+});
+
+userSchema.virtual("fullName").get(function () {
+  return `${this.firstName} ${this.lastName}`;
 });
 
 userSchema.methods = {
@@ -50,4 +54,4 @@ userSchema.methods = {
   },
 };
 
-module.exports = mongoose.model("User55", userSchema);
+module.exports = mongoose.model("User", userSchema);

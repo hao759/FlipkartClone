@@ -6,3 +6,9 @@ node src/index.server.js
 
 
 tên collection đây  :  module.exports = mongoose.model("User55", userSchema);
+
+
+
+env.config();//chayj
+
+Send post Header   Authorization: Bearersss  token
