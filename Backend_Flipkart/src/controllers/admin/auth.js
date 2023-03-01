@@ -1,17 +1,11 @@
-const User = require("../models/user");
+const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 exports.signin = (req, res) => {
   User.findOne({ email: req.body.email }).exec((err, user) => {
-    // if (err) {
-    //   console.log(err);
-    //   return res.status(400).json({
-    //     mess: err,
-    //   });
-    // }
     if (user) {
-      if (user.authenticate(req.body.password)) {
+      if (user.authenticate(req.body.password) && user.role == "admin") {
         let token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
           expiresIn: "1d",
         });
@@ -33,7 +27,7 @@ exports.signin = (req, res) => {
       }
     } else {
       return res.status(404).json({
-        mess: "Khong tim thay tai khoan user nay",
+        mess: "Khong tim thay tai khoan admin",
       });
     }
   });
@@ -55,6 +49,7 @@ exports.signup = async (req, res) => {
     email,
     hashPassword,
     username: lastName + lastName,
+    role: "admin",
   });
 
   _user.save((err, data) => {

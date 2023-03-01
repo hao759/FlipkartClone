@@ -12,3 +12,7 @@ tên collection đây  :  module.exports = mongoose.model("User55", userSchema);
 env.config();//chayj
 
 Send post Header   Authorization: Bearersss  token
+
+
+UserSchema.virtual('fullNameVirtual').get(function() {                  //ko lâu dài trên db
+    console.log(user.fullNameVirtual);
