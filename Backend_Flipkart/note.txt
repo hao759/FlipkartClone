@@ -16,3 +16,6 @@ Send post Header   Authorization: Bearersss  token
 
 UserSchema.virtual('fullNameVirtual').get(function() {                  //ko lâu dài trên db
     console.log(user.fullNameVirtual);
+
+
+    npm i slugify

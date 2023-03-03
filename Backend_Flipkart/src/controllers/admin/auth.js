@@ -6,9 +6,13 @@ exports.signin = (req, res) => {
   User.findOne({ email: req.body.email }).exec((err, user) => {
     if (user) {
       if (user.authenticate(req.body.password) && user.role == "admin") {
-        let token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
-          expiresIn: "1d",
-        });
+        let token = jwt.sign(
+          { _id: user._id, role: user.role },
+          process.env.JWT_SECRET,
+          {
+            expiresIn: "1d",
+          }
+        );
         const { firstName, lastName, email, role, fullName } = user;
         return res.status(200).json({
           token,
@@ -66,15 +70,4 @@ exports.signup = async (req, res) => {
       });
     }
   });
-};
-
-exports.requireSignin = (req, res, next) => {
-  if (req.headers.authorization) {
-    const token = req.headers.authorization.split(" ")[1];
-    req.user = jwt.verify(token, process.env.JWT_SECRET);
-  } else {
-    return res.status(400).json({ message: "Authorization required" });
-  }
-  next();
-  //jwt.decode()
 };
