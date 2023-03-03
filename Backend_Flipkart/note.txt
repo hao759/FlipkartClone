@@ -19,3 +19,4 @@ UserSchema.virtual('fullNameVirtual').get(function() {                  //ko lâ
 
 
     npm i slugify
+    (req.headers.authorization) 

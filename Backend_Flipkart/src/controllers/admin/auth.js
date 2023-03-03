@@ -26,7 +26,7 @@ exports.signin = (req, res) => {
         });
       } else {
         return res.status(400).json({
-          mess: "Invalid password",
+          mess: "Sai mật khẩu",
         });
       }
     } else {
@@ -41,7 +41,7 @@ exports.signup = async (req, res) => {
     if (err) {
       console.log(err);
       return res.status(400).json({
-        mess: "User not found",
+        mess: err,
       });
     }
   });

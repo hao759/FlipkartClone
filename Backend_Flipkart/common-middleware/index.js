@@ -6,18 +6,16 @@ exports.requireSignin = (req, res, next) => {
     const user = jwt.verify(token, process.env.JWT_SECRET);
     req.user = user;
   } else {
-    return res.status(400).json({ message: "Authorization required" });
+    return res.status(400).json({ message: "Cần đăng nhập để tiếp tục" }); //Authorization required
   }
   next();
   //jwt.decode()
 };
 
 exports.userMiddleware = (req, res, next) => {
-  console.log(req.user);
-  if (req.user.role != "admin") {
-    console.log(req.user);
+  if (req.user.role != "user") {
     return res.status(400).json({
-      mess: "user Acces denied",
+      mess: "Chỉ có user mới có quyền này",
     });
   }
   next();
@@ -26,7 +24,7 @@ exports.userMiddleware = (req, res, next) => {
 exports.adminMiddleware = (req, res, next) => {
   if (req.user.role != "admin") {
     return res.status(400).json({
-      mess: "admin Acces denied",
+      mess: "Chỉ có admin mới có quyền này",
     });
   }
   next();
