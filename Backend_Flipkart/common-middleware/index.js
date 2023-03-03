@@ -22,6 +22,7 @@ exports.userMiddleware = (req, res, next) => {
 };
 
 exports.adminMiddleware = (req, res, next) => {
+  console.log(req.user);
   if (req.user.role != "admin") {
     return res.status(400).json({
       mess: "Chỉ có admin mới có quyền này",
