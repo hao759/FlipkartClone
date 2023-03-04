@@ -1,30 +1,29 @@
 import React from "react";
-// import { Jumbotron } from "react-bootstrap";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import Layout from "../../components/Header";
 const Signin = (props) => {
   return (
-    <Layout>
+    <>
+      {/* <Layout> */}
       <Container>
         <Row style={{ marginTop: "50px" }}>
           <Col md={{ span: 6, offset: 3 }}>
-            <Form
-            //  onSubmit={userLogin}
-            >
-              <Form.Control
-                label="Email"
-                placeholder="Email"
-                // value={email}
-                type="email"
-                // onChange={(e) => setEmail(e.target.value)}
-              />
-              <Form.Control
-                label="Password"
-                placeholder="Password"
-                // value={password}
-                type="password"
-                // onChange={(e) => setPassword(e.target.value)}
-              />
+            <Form>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Email address</Form.Label>
+                <Form.Control type="email" placeholder="Enter email" />
+                <Form.Text className="text-muted">
+                  We'll never share your email with anyone else.
+                </Form.Text>
+              </Form.Group>
+
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>Password</Form.Label>
+                <Form.Control type="password" placeholder="Password" />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                <Form.Check type="checkbox" label="Check me out" />
+              </Form.Group>
               <Button variant="primary" type="submit">
                 Submit
               </Button>
@@ -32,7 +31,8 @@ const Signin = (props) => {
           </Col>
         </Row>
       </Container>
-    </Layout>
+      {/* </Layout> */}
+    </>
   );
 };
 export default Signin;
