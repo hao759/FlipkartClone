@@ -19,5 +19,13 @@ UserSchema.virtual('fullNameVirtual').get(function() {                  //ko lâ
     console.log(user.fullNameVirtual);
 
 
-    npm i slugify
+slugify chuyển chuỗi => thường, - ,bỏ kí tự đặc biệt
     (req.headers.authorization) 
+
+    shortid.generate(); tạo ID chuỗi ngẫu nhiên
+
+
+    Multer is a middleware for handling multipart/form-data in Node.js and Express. It is commonly used for handling file uploads.
+
+
+    
