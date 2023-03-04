@@ -5,6 +5,7 @@ const env = require("dotenv");
 const mongoose = require("mongoose");
 const route = require("./routes/");
 const db = require("./config/db");
+const path = require("path");
 
 env.config();
 mongoose.set("strictQuery", false);
@@ -16,6 +17,7 @@ app.use(
     extended: true,
   })
 );
+app.use("/public", express.static(path.join(__dirname, "upload")));
 
 route(app);
 db.connect();

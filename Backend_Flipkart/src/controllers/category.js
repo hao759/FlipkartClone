@@ -28,6 +28,11 @@ exports.createCategory = (req, res) => {
     name: req.body.name,
     slug: slugify(req.body.slug),
   };
+  if (req.file) {
+    categoryObj.categoryImage =
+      process.env.LOCALHOST + "/public/" + req.file.filename;
+  }
+
   if (req.body.parentId) {
     categoryObj.parentId = req.body.parentId;
   }
