@@ -1,43 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Form, Row, Col, Button } from "react-bootstrap";
 import Layout from "../../components/Layout";
-import { login } from "../../actions";
+import { isUserLoggedIn, login } from "../../actions";
 import { useDispatch, useSelector } from "react-redux";
+import Input from "../../components/UI/Input";
+import { Redirect } from "react-router-dom";
+
 const Signin = (props) => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const auth = useSelector((state) => state.auth);
+
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!auth.authenticate) dispatch(isUserLoggedIn());
+  }, []);
   const userLogin = (e) => {
     e.preventDefault();
 
     const user = {
-      email: "qwer",
-      password: "1334",
+      email,
+      password,
     };
-
     dispatch(login(user));
   };
-
+  if (auth.authenticate) {
+    return <Redirect to={"/"} />;
+  }
   return (
     <>
       <Layout>
         <Container>
-          <Row style={{ marginTop: "100px" }}>
+          <Row style={{ marginTop: "50px" }}>
             <Col md={{ span: 6, offset: 3 }}>
               <Form onSubmit={userLogin}>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
-                  <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                  </Form.Text>
-                </Form.Group>
+                <Input
+                  label="Email"
+                  placeholder="Email"
+                  value={email}
+                  type="text"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>RePassword</Form.Label>
-                  <Form.Control type="password" placeholder="RePassword" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                  <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
+                <Input
+                  label="Password"
+                  placeholder="Password"
+                  value={password}
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
                 <Button variant="primary" type="submit">
                   Submit
                 </Button>

@@ -6,6 +6,8 @@ const mongoose = require("mongoose");
 const route = require("./routes/");
 const db = require("./config/db");
 const path = require("path");
+let cors = require("cors");
+app.use(cors());
 
 env.config();
 mongoose.set("strictQuery", false);

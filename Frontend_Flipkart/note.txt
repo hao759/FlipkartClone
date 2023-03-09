@@ -4,3 +4,7 @@ npm i react-router-dom
 npm i react-bootstrap bootstrap
 
 rfc    exact component=
+
+npm i redux react-redux redux-thunk 
+
+window.store on console =>dispath    .getstate

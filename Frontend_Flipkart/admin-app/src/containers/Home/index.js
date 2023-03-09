@@ -1,12 +1,12 @@
 import React from "react";
 import { Jumbotron } from "react-bootstrap";
-
+import Layout from "../../components/Layout";
 const Home = (props) => {
   return (
     <Layout>
-      <Jumbotron className="text-center">
-        <h1>Wellcom</h1>
-      </Jumbotron>
+      {/* <Jumbotron className="text-center"> */}
+      <h1>Wellcom</h1>
+      {/* </Jumbotron> */}
     </Layout>
   );
 };
