@@ -10,10 +10,13 @@ const initState = {
   },
   authenticate: false,
   authenticating: false,
-  loading: true,
+  loading: false,
+  error: null,
+  message: "",
 };
 
 export default (state = initState, action) => {
+  console.log(action);
   switch (action.type) {
     case authConstants.LOGIN_REQUEST:
       state = {

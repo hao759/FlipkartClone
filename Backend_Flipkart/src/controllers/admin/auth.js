@@ -14,6 +14,7 @@ exports.signin = (req, res) => {
           }
         );
         const { firstName, lastName, email, role, fullName } = user;
+        res.cookie("token", token, { expiresIn: "1d" });
         return res.status(200).json({
           token,
           user: {
@@ -69,5 +70,12 @@ exports.signup = async (req, res) => {
         user: data,
       });
     }
+  });
+};
+
+exports.signout = (req, res) => {
+  res.clearCookie("token");
+  res.status(200).json({
+    message: "Đăng xuất thành công",
   });
 };
