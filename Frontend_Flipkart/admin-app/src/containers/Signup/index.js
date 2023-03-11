@@ -1,34 +1,75 @@
-import React from "react";
-import { Container, Form, Row, Col, Button } from "react-bootstrap";
+import React, { useState } from "react";
 import Layout from "../../components/Layout";
+import { Container, Form, Row, Col, Button } from "react-bootstrap";
+import Input from "../../components/UI/Input";
+import { Redirect } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { signup } from "../../actions";
+import { useEffect } from "react";
+
 const Signup = (props) => {
+  const [email, setEmail] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const user = useSelector((state) => state.user);
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  const userSignup = (e) => {
+    e.preventDefault();
+    const user = { firstName, lastName, email, password };
+    dispatch(signup(user));
+  };
+  if (auth.authenticate) {
+    return <Redirect to={"/"} />;
+  }
+  if (user.loading) return <p>Loading...</p>;
   return (
     <>
       <Layout>
         <Container>
-          <Row style={{ marginTop: "100px" }}>
+          {user.message}
+          <Row style={{ marginTop: "50px" }}>
             <Col md={{ span: 6, offset: 3 }}>
-              <Form>
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>Email address</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" />
-                  <Form.Text className="text-muted">
-                    We'll never share your email with anyone else.
-                  </Form.Text>
-                </Form.Group>
+              <Form onSubmit={userSignup}>
+                <Row>
+                  <Col md={6}>
+                    <Input
+                      label="First Name"
+                      placeholder="First Name"
+                      value={firstName}
+                      type="text"
+                      onChange={(e) => setFirstName(e.target.value)}
+                    />
+                  </Col>
+                  <Col md={6}>
+                    <Input
+                      label="Last Name"
+                      placeholder="Last Name"
+                      value={lastName}
+                      type="text"
+                      onChange={(e) => setLastName(e.target.value)}
+                    />
+                  </Col>
+                </Row>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
+                <Input
+                  label="Email"
+                  placeholder="Email"
+                  value={email}
+                  type="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                />
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" />
-                </Form.Group>
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                  <Form.Check type="checkbox" label="Check me out" />
-                </Form.Group>
+                <Input
+                  label="Password"
+                  placeholder="Password"
+                  value={password}
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
                 <Button variant="primary" type="submit">
                   Submit
                 </Button>

@@ -8,3 +8,10 @@ rfc    exact component=
 npm i redux react-redux redux-thunk 
 
 window.store on console =>dispath    .getstate
+
+
+return (
+    <div className="App">
+      {/* <Router> */}
+      <Switch>
+      ko reload trang dc
