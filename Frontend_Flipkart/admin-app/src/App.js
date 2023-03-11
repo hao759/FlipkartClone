@@ -27,7 +27,6 @@ function App() {
         <PrivateRoute path="/orders" component={Orders} /> */}
         <Route path="/signin" component={Signin} />
         <Route path="/signup" component={Signup} />
-        {/* <Route path="/" exact component={Home} /> */}
       </Switch>
       {/* </Router> */}
     </div>

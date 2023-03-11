@@ -63,8 +63,6 @@ const Header = (props) => {
     </Navbar>
   );
 };
-{
-  /* {auth.authenticate ? renderLoggedInLinks() : renderNonLoggedInLinks()} */
-}
+
 
 export default Header;

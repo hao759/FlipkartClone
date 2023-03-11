@@ -49,7 +49,7 @@ const Signin = (props) => {
                   onChange={(e) => setPassword(e.target.value)}
                 />
                 <Button variant="primary" type="submit">
-                  Submit
+                  Đăng nhập
                 </Button>
               </Form>
             </Col>

@@ -2,13 +2,9 @@ import axios from "../helpers/axios";
 import { authConstants, userContants } from "./constants";
 
 export const login = (user) => {
-  console.log(user);
   return async (dispatch) => {
     dispatch({
       type: authConstants.LOGIN_REQUEST,
-      // payload: {
-      //   ...user,
-      // },
     });
     const res = await axios.post(`/admin/signin`, { ...user }); //axios nên sai
     if (res.status === 200) {
