@@ -25,3 +25,7 @@ The useDispatch is a function provided by the Redux library that allows you to d
 Dispatch is a function  Redux store that is used to dispatch an action to the store. When an action is dispatched, the store will use the action object to update its state, and any subscribed components will be notified of the state change and re-rendered.
 
 The payload property of the action object is typically used to pass data to the reducer function so that it can update the state based on that data. In this case, the payload contains a spread of the user object, which means that the reducer function will receive the user object as an argument and can use its properties to update the store's state.
+
+useEffect((props) => {
+    dispatch(getAllCategory());
+  });//tự run khi reload
